@@ -59,7 +59,9 @@ puclic(公开访问)、protected（仅子类、父类可以访问）、private�
 ```php
 class ShopProduct
 {
-  public $title = "default"
+  public $title = "default";
   public $price = 10;
 }
+```
+
 
