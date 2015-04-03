@@ -61,7 +61,70 @@ class ShopProduct
 {
   public $title = "default";
   public $price = 10;
+  public $fristName = "Super";
+  public $secondName = "U";
 }
 ```
+④访问属性
+我们可以用->来访问属性变量，如下：
+
+```php
+$product1 = new ShopProduct();
+echo $product1->price;//这边输出 10
+```
+⑤设置属性
+因为属性被定义成public,所以我们可以给属性附值：
+
+```php
+$product1->price = 20;
+echo $product1->price;//这边输出 20
+```
+
+当我们要获取名字(full name)：我们可以这样做：
+
+```php
+echo $product1->firstName." ".$product1->secondName(); //super U
+```
+
+太麻烦了实在。如果能让对象代替我们处理这件苦差事就好了。请看下面的使用方法。
+
+⑥使用方法
+
+格式如下
+
+```php
+public function myMethod()
+{
+//...
+}
+```
+
+ShopProduct类 可以改成这样：
+
+```php
+class ShopProduct
+{
+  public $title = "default";
+  public $price = 10;
+  public $fristName = "Super";
+  public $secondName = "U";
+  
+  //注意类方法也可以声明成public\protected\private
+  public function getFullName()
+  {
+     return  $product1->firstName." ".$product1->secondName(); 
+  }
+}
+```
+
+如何使用？
+
+```php
+$product1 = new ShopProduct();
+echo $product1->getFullName();  //输出super U，刚才的问题得到了解决。
+
+```
+
+
 
 
