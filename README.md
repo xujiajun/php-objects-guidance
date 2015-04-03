@@ -50,7 +50,7 @@ class ShopProduct {
 $product1 = new ShopProduct();
 $product2 = new ShopProduct();
 ```
-<strong>new</strong> 操作符和作为他唯一操作数的类名一起被调用，并生成类的实例。
+<b>new</b> 操作符和作为他唯一操作数的类名一起被调用，并生成类的实例。
 本例中$product1和$product2同一个类生成的相同类型的不同对象
 
 ③ 类属性
@@ -124,6 +124,61 @@ $product1 = new ShopProduct();
 echo $product1->getFullName();  //输出super U，刚才的问题得到了解决。
 
 ```
+
+⑤构造函数
+
+小需求：现在要创建一个fullName分别为Super2 U2、Super3 U3的对象。并分别得到他的fullName值,我们可以这么做：
+
+```php
+$product2 = new ShopProduct();
+$product2->fristName = "Super2"
+$product2->secondName = "U2";
+echo $product2->getFullName();
+
+$product3 = new ShopProduct();
+$product3->fristName = "Super3"
+$product3->secondName = "U3";
+echo $product3->getFullName();
+```
+
+ok done.
+
+有没有觉得太繁琐？有没有能自动调用的方法。答案是肯定的。引出我们的构造方法：
+
+```php
+class ShopProduct
+{
+  public $title = "default";
+  public $price = 10;
+  public $fristName = "Super";
+  public $secondName = "U";
+  
+  function __construct($title, $price, $firstName, $secondName)
+  {
+      $this->title = $title;
+      $this->price = $price;
+      $this->firstName = $firstName;
+      $this->secondName = $secondName;
+  }
+  
+  public function getFullName()
+  {
+     return  $product1->firstName." ".$product1->secondName(); 
+  }
+}
+```
+注意关键词 <b>__construct</b>,他会在创建对象时候，自动去调用。
+
+让我们try it.改造上面的小需求：
+
+```php
+$product2 = new ShopProduct(‘default’,10,'Super2'，'U2');
+echo $product2->getFullName();
+
+$product3 = new ShopProduct(‘default’,10,'Super3','U3');
+echo $product3->getFullName();
+```
+ok done.是不是简洁了很多。
 
 
 
