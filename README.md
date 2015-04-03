@@ -39,7 +39,7 @@ PHP 是一个开源的软件（open source software，OSS）
 
 PHP 可免费下载使用
 
-<h5 id="PHP-syntax">1.2、基本语法</h5>
+<h5 id="PHP-syntax">1.2、PHP基本语法</h5>
 
 PHP的脚本块以<?php开始，以 ?> 结束。您可以把 PHP 的脚本块放置在文档中的任何位置。
 当然，在支持简写的服务器上，您可以使用 [[<? 和 ?>]] 来开始和结束脚本块。
@@ -97,7 +97,7 @@ echo $product1->firstName." ".$product1->secondName(); //super U
 
 太麻烦了实在。如果能让对象代替我们处理这件苦差事就好了。请看下面的使用方法。
 
-<h5 id="create-func">2.6、使用方法</h5>
+<h5 id="create-func">2.6、函数（方法）使用</h5>
 
 格式如下
 
