@@ -22,6 +22,7 @@
 - &nbsp;&nbsp;[2.5、设置属性](#set-attribute)
 - &nbsp;&nbsp;[2.6、函数（方法）使用](#create-func)
 - &nbsp;&nbsp;[2.7、构造函数](#construct-func)
+- &nbsp;&nbsp;[2.8、基本类型和PHP类型检查函数](#base-type)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -189,6 +190,52 @@ echo $product3->getFullName();
 ```
 ok done.是不是简洁了很多。
 
+<h5 id="base-type">2.8、基本类型和PHP类型检查函数</h5>
 
-
-
+<table>
+<tr>
+    <th>类型检查函数</th>
+    <th>类型</th>
+    <th>描述</th>
+</tr>
+<tr>
+    <td>is_bool()</td>
+    <td>布尔型</td>
+    <td>值为true或者false</td>
+</tr>
+<tr>
+    <td>is_integer()</td>
+    <td>整型</td>
+    <td>整数</td>
+</tr>
+<tr>
+    <td>is_double()</td>
+    <td>双精度型</td>
+    <td>浮点数</td>
+</tr>
+<tr>
+    <td>is_string()</td>
+    <td>字符串</td>
+    <td>字符数据</td>
+</tr>
+<tr>
+    <td>is_object()</td>
+    <td>对象</td>
+    <td>对象</td>
+</tr>
+<tr>
+    <td>is_array()</td>
+    <td>数组</td>
+    <td>数组</td>
+</tr>
+<tr>
+    <td>is_resource()</td>
+    <td>资源</td>
+    <td>用于识别和处理外部资源的（如数据库或文件）句柄</td>
+</tr>
+<tr>
+    <td>is_null()</td>
+    <td>NULL</td>
+    <td>未分配的值</td>
+</tr>
+</table>
