@@ -24,6 +24,8 @@
 - &nbsp;&nbsp;[2.7、构造函数](#construct-func)
 - &nbsp;&nbsp;[2.8、基本类型和PHP类型检查函数](#base-type)
 - &nbsp;&nbsp;[2.9、继承](#extends)
+- [3、高级特性](#advanced-feature)
+- &nbsp;&nbsp;[3.1、静态方法和属性](#static)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -282,3 +284,25 @@ Class CdProduct extends ShopProduct
 }
 ```
 这样CdProduct除继承父类ShopProduct所有特性外，还自己多了个getplayLength的方法
+
+<h2 id="advanced-feature">高级特性</h2>
+
+<h5 id="static">静态方法和属性</h5>
+我们不仅可以通过对象来访问方法和属性，还可以通过类来访问它们。这样的方法和属性是“静态的”
+<b>static</b>关键词来声明。
+
+example:
+
+```php
+class StaticExample
+{
+    static public $aNum;
+    static public function()
+    {
+        echo "hi,xujiajun :)"
+    }
+}
+```
+如何访问？
+
+因为通过类而不是实例来访问静态元素，所以访问静态元素时，不需要引用对象的变量，用::(双冒号)来连接
