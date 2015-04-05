@@ -23,6 +23,7 @@
 - &nbsp;&nbsp;[2.6、函数（方法）使用](#create-func)
 - &nbsp;&nbsp;[2.7、构造函数](#construct-func)
 - &nbsp;&nbsp;[2.8、基本类型和PHP类型检查函数](#base-type)
+- &nbsp;&nbsp;[2.9、继承](#extends)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -239,3 +240,6 @@ ok done.是不是简洁了很多。
     <td>未分配的值</td>
 </tr>
 </table>
+
+<h5 id="extends">继承</h5>
+继承是从一个类得到一个或者多个类的机制。
