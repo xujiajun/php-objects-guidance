@@ -241,5 +241,44 @@ ok done.是不是简洁了很多。
 </tr>
 </table>
 
-<h5 id="extends">继承</h5>
+<h5 id="extends">2.9、继承</h5>
 继承是从一个类得到一个或者多个类的机制。
+
+例子：
+
+
+```php
+class ShopProduct
+{
+  public $title = "default";
+  public $price = 10;
+  public $fristName = "Super";
+  public $secondName = "U";
+  public $playLength;
+  
+  function __construct($title, $price, $firstName, $secondName,$playLength)
+  {
+      $this->title = $title;
+      $this->price = $price;
+      $this->firstName = $firstName;
+      $this->secondName = $secondName;
+      $this->playLength = $playLength;
+  }
+  //注意类方法也可以声明成public\protected\private
+  public function getFullName()
+  {
+     return  $product1->firstName." ".$product1->secondName(); 
+  }
+}
+```
+
+```php
+Class CdProduct extends ShopProduct
+{
+    function getplayLength()
+    {
+        return $this->playLength;
+    }
+}
+```
+这样CdProduct除继承父类ShopProduct所有特性外，还自己多了个getplayLength的方法
