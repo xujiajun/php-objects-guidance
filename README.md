@@ -27,6 +27,7 @@
 - [3、高级特性](#advanced-feature)
 - &nbsp;&nbsp;[3.1、静态方法和属性](#static)
 - &nbsp;&nbsp;[3.2、常量属性](#const)
+- &nbsp;&nbsp;[3.3、抽象类](#abstract-class)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -335,11 +336,63 @@ class ShopProduct
 }
 ```
 
-如何使用？
+Q:如何使用？
 
-Shopproduct::AVAILABLE;
+A:Shopproduct::AVAILABLE;
 
-什么时候需要使用他？
-当需要类的所有实例中都能访问某个属性，并且属性值无需改变时，应该使用常量。
+Q:什么时候需要使用他？
 
+A当需要类的所有实例中都能访问某个属性，并且属性值无需改变时，应该使用常量。
 
+<h5 id="abstract-class">3.3、抽象类</h5>
+
+注意抽象类不能被直接实例化。
+
+抽象类中只定义（或者部分实现）子类需要的方法。子类可以继承他并且通过实现其中的抽象方法，使其具体化。
+
+使用<b>abstract</b>关键词来定义一个抽象类。
+
+example:
+
+```php
+abstract class ShopProductWriter
+{
+    protected $product = array();
+    
+    public function addProduct(ShopProduct $shopProduct)
+    {
+        $this->products[] = $shopProduct;
+    }
+}
+```
+
+在声明抽象方法不是以方法体结束，以分号结束。
+
+```php
+abstract class ShopProductWriter
+{
+    protected $product = array();
+    
+    public function addProduct(ShopProduct $shopProduct)
+    {
+        $this->products[] = $shopProduct;
+    }
+    
+    abstract public function write();
+}
+```
+创建抽象方法后，要确保所有子类中都实现该方法，但实现的细节可以先不确定。
+
+```php
+class ErrorWriter extends ShopProductWriter{}; 
+//Fatal error: Class ErrorWriter contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (ShopProductWriter::write) in ...
+```
+改成如下，就ok了:
+```php
+class TextProductWriter extends ShopProductWriter
+{
+    public function write()
+    {
+    }
+}
+```
