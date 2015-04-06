@@ -29,6 +29,7 @@
 - &nbsp;&nbsp;[3.2、常量属性](#const)
 - &nbsp;&nbsp;[3.3、抽象类](#abstract-class)
 - &nbsp;&nbsp;[3.4、接口](#interface)
+- &nbsp;&nbsp;[3.5、错误处理](#error-process)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -455,3 +456,82 @@ class Xujiajun extends People implements run,fly
 这里 Xujiajun这个类 继承了People类，实现了不止一个接口
 
 注意：PHP只支持继承一个父类，因此extends关键词只能在一个类名之前。
+
+<h5 id="error-process">3.5、错误处理</h5>
+
+文件放错地方、数据库服务区未初始化、URL变动、XML文件损坏、权限设置得不对、磁盘空间限制等，这些问题，时常发生。
+一个类里面 我们会充满了错误处理的代码。
+
+<b>异常</b> 。这是一种完全不同的处理错误的方式。异常能解决刚提到的所有问题。
+
+Exception类的public的方法
+
+<table>
+<tr>
+        <th>方法</th>
+        <th>描述</th>
+</tr>
+<tr>
+    <td>getMessage()</td>
+    <td>获得传递给构造方法的消息字符串</td>
+</tr>
+<tr>
+    <td>getCode()</td>
+    <td>获得传递给构造方法的错误代码</td>
+</tr>
+<tr>
+    <td>getFile()</td>
+    <td>获得产生异常的文件</td>
+</tr>
+<tr>
+    <td>getLine()</td>
+    <td>获得异常生成的行数</td>
+</tr>
+<tr>
+    <td>getTrace()</td>
+    <td>获得一个多维数组，追踪导致异常的方法调用，包含文件、类、文件、参数数据</td>
+</tr>
+<tr>
+    <td>getTraceAsString()</td>
+    <td>获得getTrace(返回的字符串版本</td>
+</tr>
+<tr>
+    <td>__toString()</td>
+    <td>在字符串中使用Exception对象时自动调用。返回一个描述异常细节的字符串</td>
+</tr>
+</table>
+
+①抛出异常
+
+关键词<b>throw和Exception对象</b>来抛出异常。
+
+example:
+
+```php
+function write ()
+{
+    if (!is_writeable($this->file)) {
+        throw new Exception("file '{$this->file}' is not writeable!");
+    }
+}
+```
+
+如何捕获异常？
+
+try...catch..
+
+example:
+
+```php
+
+try {
+    $conf = new Conf(dirname(__FILE__)."/xujiajun.xml");
+    $conf->write();
+} catch (Exception $e) {
+    die($e->__toString());
+}
+
+```
+
+②异常子类化
+
