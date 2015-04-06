@@ -26,6 +26,7 @@
 - &nbsp;&nbsp;[2.9、继承](#extends)
 - [3、高级特性](#advanced-feature)
 - &nbsp;&nbsp;[3.1、静态方法和属性](#static)
+- &nbsp;&nbsp;[3.2、常量属性](#const)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -285,9 +286,9 @@ Class CdProduct extends ShopProduct
 ```
 这样CdProduct除继承父类ShopProduct所有特性外，还自己多了个getplayLength的方法
 
-<h2 id="advanced-feature">高级特性</h2>
+<h2 id="advanced-feature">3、高级特性</h2>
 
-<h5 id="static">静态方法和属性</h5>
+<h5 id="static">3.1、静态方法和属性</h5>
 我们不仅可以通过对象来访问方法和属性，还可以通过类来访问它们。这样的方法和属性是“静态的”
 <b>static</b>关键词来声明。
 
@@ -297,7 +298,7 @@ example:
 class StaticExample
 {
     static public $aNum;
-    static public function()
+    static public function sayHi()
     {
         echo "hi,xujiajun :)"
     }
@@ -306,3 +307,39 @@ class StaticExample
 如何访问？
 
 因为通过类而不是实例来访问静态元素，所以访问静态元素时，不需要引用对象的变量，用::(双冒号)来连接
+StaticExample::$aNum;
+echo StaticExample::sayHi(); //输出 hi,xujiajun :)
+
+在StaticExample内部，用关键词<b>self</b>关键词：
+
+```php
+class StaticExample
+{
+    static public $aNum = 0;
+    static public function sayHi()
+    {
+        self::$aNum++;
+        echo "hi,xujiajun :)".self::$aNum."\n";
+    }
+}
+```
+
+<h5 id="const">3.2、常量属性</h5>
+
+example:
+
+```php
+class ShopProduct
+{
+    const AVAILABLE = 0;
+}
+```
+
+如何使用？
+
+Shopproduct::AVAILABLE;
+
+什么时候需要使用他？
+当需要类的所有实例中都能访问某个属性，并且属性值无需改变时，应该使用常量。
+
+
