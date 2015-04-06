@@ -1,6 +1,6 @@
 系统学习PHP与面向对象、设计模式
 ====
-编辑、整理 By [xujiajun](http://github.com/xujiajun)
+编辑、整理 By [xujiajun](http://xujiajun.cn)
 - - - 
 前言
 ----
@@ -28,6 +28,7 @@
 - &nbsp;&nbsp;[3.1、静态方法和属性](#static)
 - &nbsp;&nbsp;[3.2、常量属性](#const)
 - &nbsp;&nbsp;[3.3、抽象类](#abstract-class)
+- &nbsp;&nbsp;[3.4、接口](#interface)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -396,3 +397,61 @@ class TextProductWriter extends ShopProductWriter
     }
 }
 ```
+<h5 id="interface">3.4、接口</h5>
+
+抽象类提供了具体的实现的标准，而接口则是纯粹的模板
+
+example:
+
+```php
+interface Chargeable
+{
+    public function getPrice();
+}
+```
+
+任何实现接口都要实现接口中所定义的所有方法，否则该类必须声明为abstract
+
+关键词<b>implements</b>来实现某一个接口。
+
+example:
+
+```php
+class ShopProduct implements Chargeable
+{
+    //...
+    public function getPrice()
+    {
+        return ($this->price - $this->discount);  
+    }
+}
+```
+
+一个类可以实现一个父类。多个接口
+example:
+
+```php
+
+interface run
+{
+    //...
+}
+
+interface fly
+{
+    //...
+}
+
+class People
+{
+    //...
+}
+
+class Xujiajun extends People implements run,fly
+{
+    //...
+}
+```
+这里 Xujiajun这个类 继承了People类，实现了不止一个接口
+
+注意：PHP只支持继承一个父类，因此extends关键词只能在一个类名之前。
