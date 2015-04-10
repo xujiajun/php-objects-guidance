@@ -273,7 +273,7 @@ class ShopProduct
   //注意类方法也可以声明成public\protected\private
   public function getFullName()
   {
-     return  $product1->firstName." ".$product1->secondName(); 
+     return  $this->firstName." ".$this->secondName(); 
   }
 }
 ```
