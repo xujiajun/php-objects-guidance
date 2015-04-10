@@ -759,7 +759,7 @@ unset($p);//输出saving person info
 ```
 注意：析构方法和__call一样这些都是魔术方法。需慎用。
 
-<h5>3.9、克隆对象</h5>
+<h5 id="clone">3.9、克隆对象</h5>
 
 ```php
 class CopyMe
