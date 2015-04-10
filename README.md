@@ -1,6 +1,6 @@
 系统学习PHP与面向对象、设计模式
 ====
-本文由 [xujiajun][xujiajun] 整理、编辑并在 [CC BY-SA 3.0][CC] 协议下发布，主要为了给自己和各位朋友作为系统学习PHP以及面向对象的参考资料。
+本文由 [xujiajun][xujiajun] 整理、编辑并在 [CC BY-SA 3.0][CC] 协议下发布，主要为了给自己和各位朋友作为系统学习PHP与面向对象、设计模式的参考资料。
 [CC]: http://zh.wikipedia.org/wiki/Wikipedia:CC "Wiki: CC"
 [xujiajun]:http://xujiajun.cn
 - - - 
@@ -35,6 +35,7 @@
 - &nbsp;&nbsp;[3.6、Final类和方法](#final)
 - &nbsp;&nbsp;[3.7、使用拦截器](#interceptor)
 - &nbsp;&nbsp;[3.8、析构方法](#destruct)
+- &nbsp;&nbsp;[3.9、克隆对象](#clone)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -758,3 +759,37 @@ unset($p);//输出saving person info
 ```
 注意：析构方法和__call一样这些都是魔术方法。需慎用。
 
+<h5>3.9、克隆对象</h5>
+
+```php
+class CopyMe
+{
+};
+$firstClass = new CopyMe();
+$secondClass = clone $firstClass;
+//现在$firstClass、$secondClass是两个不同的对象了
+``` 
+
+__clone的使用
+
+```php
+class Person
+{
+    private $name;
+    private $age;
+    private $id;
+    
+    function __construct($name,$age)
+    {
+        $this->name = $name;
+        $this->age = $age;
+    }
+    function __clone()
+    {
+        $this->id = 0;
+    }
+}
+
+$p = new Person("xujiajun",18);
+$p2 = clone $p;// 这个时候 $p2的id为0,name:xujiajun,age:18
+```
