@@ -70,6 +70,7 @@ $product2 = new ShopProduct();
 <b>new</b> 操作符和作为他唯一操作数的类名一起被调用，并生成类的实例。
 本例中$product1和$product2同一个类生成的相同类型的不同对象
 
+```关于类和对象关系 请移步```[点击观看视频](http://superu.org/course/6/learn#lesson/14)
 <h5 id="class-attribute">2.3、类属性</h5>
 puclic(公开访问)、protected（仅子类、父类可以访问）、private（仅本类才能访问）
 
