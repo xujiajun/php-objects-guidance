@@ -754,5 +754,7 @@ class Person
 }
 $p = new Person("xujiajun",18);
 $p->setId(18);
-unset($p);
+unset($p);//输出saving person info
 ```
+注意：析构方法和__call一样这些都是魔术方法。需慎用。
+
