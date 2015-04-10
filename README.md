@@ -1,6 +1,8 @@
 系统学习PHP与面向对象、设计模式
 ====
-编辑、整理 By [xujiajun](http://xujiajun.cn)
+本文由 [xujiajun][xujiajun] 整理、编辑并在 [CC BY-SA 3.0][CC] 协议下发布，主要为了给自己和各位朋友作为系统学习PHP以及面向对象的参考资料。
+[CC]: http://zh.wikipedia.org/wiki/Wikipedia:CC "Wiki: CC"
+[xujiajun]:http://xujiajun.cn
 - - - 
 前言
 ----
@@ -32,6 +34,7 @@
 - &nbsp;&nbsp;[3.5、错误处理](#error-process)
 - &nbsp;&nbsp;[3.6、Final类和方法](#final)
 - &nbsp;&nbsp;[3.7、使用拦截器](#interceptor)
+- &nbsp;&nbsp;[3.8、析构方法](#destruct)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -585,7 +588,7 @@ class SuperUChild extends SuperU
 
 注意：高质量的面向对象代码往往强调定义明确的接口。声明类或方法为final，会减少其灵活性。不过有时候我们确实需要这样做。
 
-<h5>3.7、使用拦截器</h5>
+<h5 id="interceptor">3.7、使用拦截器</h5>
 
 拦截器方法：
 
@@ -683,7 +686,7 @@ function __unset($property)
 ```
 
 ```php
-
+//__call
 class PersonWriter
 {
     function writeName(Person $p)
@@ -716,4 +719,40 @@ class person
 
 $p = new Person(new PersonWriter());
 echo $p->writeName(); //输出xujiajun~
+```
+
+<h5 id="destruct">3.8、析构方法</h5>
+
+比如有一个类需要把其自身的信息写入数据库。这时可以使用__destruct()方法在对象实例被删除时确保把自己保存在数据库中:
+```php
+
+class Person
+{
+    private $name;
+    private $age;
+    private $id;
+
+    function __construct($name,$age)
+    {
+        $this->name = $name;
+        $this->age = $age;
+    }
+    
+    function __destruct()
+    {
+        if(!empty($this->id))
+        {
+        //保存信息
+            echo "saving person info";
+        }
+    }
+    
+    function setId($id)
+    {
+        $this->id = $id;
+    }
+}
+$p = new Person("xujiajun",18);
+$p->setId(18);
+unset($p);
 ```
