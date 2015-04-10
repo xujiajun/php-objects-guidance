@@ -536,3 +536,9 @@ try {
 
 ②异常子类化
 
+exmaple:
+
+```php
+class XmlException extends Exception{}
+```
+通过这种方式你可以扩展异常类的功能和定义新的异常类型。
