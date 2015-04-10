@@ -30,6 +30,7 @@
 - &nbsp;&nbsp;[3.3、抽象类](#abstract-class)
 - &nbsp;&nbsp;[3.4、接口](#interface)
 - &nbsp;&nbsp;[3.5、错误处理](#error-process)
+- &nbsp;&nbsp;[3.6、Final类和方法](#final)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -542,3 +543,43 @@ exmaple:
 class XmlException extends Exception{}
 ```
 通过这种方式你可以扩展异常类的功能和定义新的异常类型。
+
+<h5 id="final">3.6、Final类和方法</h5>
+
+Q:什么情况用到Final？
+
+A: 如果希望类和方法完全确定不变的功能，担心覆写它会破坏这个功能。
+
+example:
+
+```php
+final class Superu
+{
+}
+
+下面尝试生成SuperU子类
+
+class SuperuChild extends SuperU
+{
+}
+
+将会报错。
+```
+
+但是，注意如果<b>final</b>关键词 放在<b>SuperU</b>这个类的方法里面，继承是不会报错的：
+
+```php
+
+class Superu
+{
+   final function getName();
+}
+
+class SuperUChild extends SuperU
+{
+}
+```
+
+但是，如果你要覆写SuperU类的getName方法，还是会报错的。
+
+注意：高质量的面向对象代码往往强调定义明确的接口。声明类或方法为final，会减少其灵活性。不过有时候我们确实需要这样做。
