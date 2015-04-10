@@ -31,6 +31,7 @@
 - &nbsp;&nbsp;[3.4、接口](#interface)
 - &nbsp;&nbsp;[3.5、错误处理](#error-process)
 - &nbsp;&nbsp;[3.6、Final类和方法](#final)
+- &nbsp;&nbsp;[3.7、使用拦截器](#interceptor)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -583,3 +584,136 @@ class SuperUChild extends SuperU
 但是，如果你要覆写SuperU类的getName方法，还是会报错的。
 
 注意：高质量的面向对象代码往往强调定义明确的接口。声明类或方法为final，会减少其灵活性。不过有时候我们确实需要这样做。
+
+<h5>3.7、使用拦截器</h5>
+
+拦截器方法：
+
+|方法                        |      描述                         |
+|----------------------------|---------------------------------- |
+|  __get($property)          |访问未定义的属性被调用             |
+|  __set($property)           |对未定义的属性赋值时被调用        |
+| __isset($property)          |对未定义的属性调用isset()时被调用 |
+|  __unset($property)          |对未定义的属性调用unset()时被调用|
+|  __call($method,$arg_array)  |调用未定义的方法时被调用         |
+
+example:
+
+```php
+
+//__get
+class Person
+{
+    
+    function __get($argument)
+    {
+        $method = "get".ucfirst($argument);
+        if (method_exists($this, $method)) {
+             return $this->$method();
+        }
+    }
+
+    function getName()
+    {
+        return "xujiajun";
+    }
+}
+
+
+$p = new Person();
+echo $p->name; //输出xujiajun
+
+注意：如果方法不存在，则什么也不做。
+
+
+//__isset:
+
+function __isset($argument)
+{
+   $method = "get".ucfirst($argument);
+        if (method_exists($this, $method)) {
+             return $this->$method();
+   }
+}
+
+if (isset($p->name)) {
+    return $p->getName();
+}
+```
+
+```php
+
+//__set
+
+class Person
+{
+    private $_name;
+
+    function __set($argument,$value)
+    {
+        $method = "set".ucfirst($argument);
+        if (method_exists($this, $method)) {
+             return $this->$method($value);
+        }
+    }
+
+    function setName($name)
+    {
+        $this->_name = $name;
+        if (!$this->_name) {
+            $this->_name = strtoupper($this->_name);
+        }
+    }
+}
+
+
+$p = new Person();
+$p->name = "xujiajun";//注意 这个时候$_name 已经变成 xujiajun
+
+
+//__unset 和__set向对应
+
+function __unset($property)
+{
+    $method = "set".ucfirst($argument);
+    if (method_exists($this, $method)) {
+        return $this->$method(null);
+    }
+}
+```
+
+```php
+
+class PersonWriter
+{
+    function writeName(Person $p)
+    {
+        return $p->getName()."~\n";
+    }
+}
+
+class person
+{
+    private $_writer;
+
+    function __construct(PersonWriter $writer)
+    {
+        $this->_writer = $writer;
+    }
+
+    function __call($medthodName,$args)
+    {
+        if (method_exists($this->_writer, $medthodName)) {
+            return $this->_writer->$medthodName($this);
+        }
+    }
+
+    function getName()
+    {
+        return "xujiajun";
+    }
+}
+
+$p = new Person(new PersonWriter());
+echo $p->writeName(); //输出xujiajun~
+```
