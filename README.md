@@ -36,6 +36,8 @@
 - &nbsp;&nbsp;[3.7、使用拦截器](#interceptor)
 - &nbsp;&nbsp;[3.8、析构方法](#destruct)
 - &nbsp;&nbsp;[3.9、克隆对象](#clone)
+- [4、对象工具](#object-tool)
+- &nbsp;&nbsp;[4.1、PHP与包](#php-package)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -793,3 +795,59 @@ class Person
 $p = new Person("xujiajun",18);
 $p2 = clone $p;// 这个时候 $p2的id为0,name:xujiajun,age:18
 ```
+
+<h2 id="object-tool">4、对象工具</h2>
+
+<h5 id="php-package">4.1、PHP与包</h5>
+
+PHP没有支持"包"机制,但我们应该将代码组织类似“包”的结构。
+
+低版本的PHP5，我们可以通过包结构的文件系统来组织类。
+
+require_once 'util/xujiajun1.php';
+
+require_once 'util2/xujiajun2.php';
+
+PHP5.3命名空间引入
+
+example:
+
+```php
+
+//foo.php:
+
+<?php 
+
+namespace foo;
+
+class xujiajun
+{
+    static function says()
+    {
+        echo "hi,namespace";
+    }
+}
+?>
+
+//bar.php
+<?php
+
+namespace bar;
+
+require_once 'foo.php';
+
+class xujiajun
+{
+    static function says()
+    {
+        echo "@hi,namespace2";
+    }
+}
+
+echo \foo\xujiajun::says();
+echo \bar\xujiajun::says();
+
+//输出hi,namespace@hi,namespace2
+?>
+```
+
