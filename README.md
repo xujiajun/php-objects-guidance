@@ -38,6 +38,8 @@
 - &nbsp;&nbsp;[3.9、克隆对象](#clone)
 - [4、对象工具](#object-tool)
 - &nbsp;&nbsp;[4.1、PHP与包](#php-package)
+- &nbsp;&nbsp;[4.2、类函数和对象函数](#class-object-func)
+- &nbsp;&nbsp;[4.3、反射api](#reflect-api)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
