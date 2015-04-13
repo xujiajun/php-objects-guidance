@@ -898,3 +898,39 @@ if($person instanceof Person)
     echo "$person is a Person object\n";
 }
 ```
+
+我们如果需要知道类中的方法，怎么办？PHP提供了get_class_methods()函数得到一个类中的所有方法列表。
+
+example:
+
+```php
+
+<?php 
+class Xujiajun
+{
+    public function getAge()
+    {
+        # code...
+    }
+
+    public function getFullName()
+    {
+        # code...
+    }
+}
+
+$p = new Xujiajun();
+
+var_dump(get_class_methods($p));
+
+//输出
+    array(2) {
+      [0] =>
+      string(6) "getAge"
+      [1] =>
+      string(11) "getFullName"
+    }
+```
+
+注意：只有声明成`public`的方法才会显示哦。
+
