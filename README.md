@@ -1128,3 +1128,28 @@ $reflector = new ReflectionClass('Person');
 
 var_dump($reflector->isInterface());//bool(true)
 ```
+③检查方法
+
+ReflectionClass我们用来检查类，那么检查类中的方法可以用`RelectionMethod`
+
+获取`RelectionMethod`对象的方式有两种：
+
+0、从RelectionClass::getMethods()获得RelectionMethod对象数组
+
+1、如果是特定的类方法,RelectionClass::getMethod()接受一个方法名作为参数并返回相应的RelectionMethod对象。
+
+example:
+
+```php
+
+class Xujiajun
+{
+    public function getName()
+    {
+        
+    }
+}
+$reflector = new ReflectionClass('Xujiajun');
+$methods = $reflector->getMethods();
+var_dump($methods[0]->isPublic());//bool(true)
+```
