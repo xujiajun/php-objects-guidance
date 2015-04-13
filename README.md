@@ -871,3 +871,15 @@ if (!class_exists($className))
 }
 //当然，我们无法确定该类的构造方法是否需要参数。在这个级别的安全上，应该求助反射api
 ```
+
+PHP有很多用于检测对象类型的基本工具。首先，可以使用get_class()函数检查对象的类,他接受任何对象作为参数。
+
+example:
+
+```php
+$person = new xujiajun();
+if(get_class($person) == "xujiajun")
+{
+    print "$person is a xujiajun object\n";
+}
+```
