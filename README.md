@@ -853,3 +853,21 @@ echo \bar\xujiajun::says();
 ?>
 ```
 
+<h5 id="class-object-func">4.2、类函数和对象函数</h5>
+
+PHP提供了一系列强大的函数来检测和对象
+
+查找类
+example：
+
+```php
+//class_exists()函数接受表示类的字符串，检查并返回布尔值。
+
+$className = "superu";
+
+if (!class_exists($className))
+{
+    throw new Exception("No such class $className");
+}
+//当然，我们无法确定该类的构造方法是否需要参数。在这个级别的安全上，应该求助反射api
+```
