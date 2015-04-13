@@ -1052,7 +1052,7 @@ RelectionFunction|函数信息和工具
 RelectionExcetion|错误类
 RelectionExtension|PHP扩展信息
 
-利用这些反射API的类，可以运行访问对象、函数和脚本中的扩展信息。反射API非常强大,我们应该经常使用API而少使用类和对象函数。
+①利用这些反射API的类，可以运行访问对象、函数和脚本中的扩展信息。反射API非常强大,我们应该经常使用API而少使用类和对象函数。
 
 example:
 
@@ -1114,3 +1114,17 @@ var_dump($properties);
 ```
 从例子中可以看出，Relection::export()提供了Xujiajun这个类的几乎所有信息。
 如果我们直接var_dump()一个对象的话，前提要实例化它，而且也不会有细节提供。可见，反射API提供了更高层次的功能。
+
+②类检测
+
+example：
+```php
+interface Person
+{
+    public function getName();
+}
+
+$reflector = new ReflectionClass('Person');
+
+var_dump($reflector->isInterface());//bool(true)
+```
