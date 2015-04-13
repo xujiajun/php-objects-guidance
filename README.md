@@ -899,7 +899,7 @@ if($person instanceof Person)
 }
 ```
 
-我们如果需要知道类中的方法，怎么办？PHP提供了get_class_methods()函数得到一个类中的所有方法列表。
+我们如果需要知道类中的方法，怎么办？PHP提供了`get_class_methods()`函数得到一个类中的所有方法列表。
 
 example:
 
@@ -983,14 +983,18 @@ var_dump(get_class_vars('Xujiajun'));
 
 了解继承
 
-类函数也允许我们绘制继承关系。我们可以用get_parent_class()来找到一个类的父类。参数为一个类名或者对象。
+类函数也允许我们绘制继承关系。我们可以用`get_parent_class()`来找到一个类的父类。参数为一个类名或者对象。
 
 example:
 
 ```php
 
-class Person{}
-class Xujiajun extends Person{}
+class Person
+{
+}
+class Xujiajun extends Person
+{
+}
 var_dump(get_parent_class(new Xujiajun));//string(6) "Person"
 
 ```
@@ -1002,3 +1006,31 @@ example：
 var_dump(is_subclass_of('Xujiajun', 'Person'));//bool(true)
 
 ```
+
+方法调用
+
+比如现在我们要字符串动态调用某一个方法：
+
+```php
+$p = getPerson();//获取Person对象
+$method = "getAge";//定义方法名
+echo $p->$method();
+```
+其实，我们可以通过PHP提供的`call_user_func()`达到相同目的。
+
+example:
+
+```php
+class Xujiajun
+{
+    public function getAge($age = 0)
+    {
+        return 18;
+    }
+}
+var_dump(call_user_func(array(new Xujiajun,'getAge')));//18
+
+//加参数
+var_dump(call_user_func(array(new Xujiajun,'getAge'),2));//20
+```
+当然 `call_user_func_array()` 更加好用,使用上相同,参数支持数组传参。
