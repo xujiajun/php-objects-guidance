@@ -877,9 +877,24 @@ PHP有很多用于检测对象类型的基本工具。首先，可以使用get_c
 example:
 
 ```php
-$person = new xujiajun();
-if(get_class($person) == "xujiajun")
+$person = new Xujiajun();
+
+if(get_class($person) == "Xujiajun")
 {
-    print "$person is a xujiajun object\n";
+    print "$person is a Xujiajun object\n";
+}
+```
+
+我们有时候只想确定一个类的类型,比如只想知道是不是Person这个类的，我们不关心是不是Xujiajun还是Superu。
+为此，PHP提供了instanceof这个操作符。
+
+example:
+
+```php
+$person = new Person();
+
+if($person instanceof Person)
+{
+    echo "$person is a Person object\n";
 }
 ```
