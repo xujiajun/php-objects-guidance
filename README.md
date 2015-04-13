@@ -980,3 +980,25 @@ var_dump(get_class_vars('Xujiajun'));
       string(2) "18"
     }
 ```
+
+了解继承
+
+类函数也允许我们绘制继承关系。我们可以用get_parent_class()来找到一个类的父类。参数为一个类名或者对象。
+
+example:
+
+```php
+
+class Person{}
+class Xujiajun extends Person{}
+var_dump(get_parent_class(new Xujiajun));//string(6) "Person"
+
+```
+另外也可以用`is_subclass_of`来检测类是否是另一个类的派生类。它需要一个子类对象(或者类)和父类的名字。
+
+example：
+
+```php
+var_dump(is_subclass_of('Xujiajun', 'Person'));//bool(true)
+
+```
