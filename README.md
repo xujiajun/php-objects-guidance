@@ -934,3 +934,29 @@ var_dump(get_class_methods($p));
 
 注意：只有声明成`public`的方法才会显示哦。
 
+如果我们要检测某一个方法是否存在，用以上这个`get_class_method`当然可以做到：
+
+```php
+if( in_array($method,get_class_methods($p)))
+{
+}
+```
+
+其实PHP有更加专业的工具:`method_exists`和`is_callable`,
+
+example:
+
+```php
+
+//is_callable()
+if (is_callable(array($p, "getAge"))) {
+    echo $p->getAge(); // 18
+}
+
+//method_exists()
+if (method_exists($p, "getAge")) {
+    echo $p->getAge();// 18
+}
+```
+
+注意以上两者区别：如果getAge方法改成private、protected,`is_callable`返回是false，而`method_exists`返回true
