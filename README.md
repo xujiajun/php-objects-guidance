@@ -1153,3 +1153,43 @@ $reflector = new ReflectionClass('Xujiajun');
 $methods = $reflector->getMethods();
 var_dump($methods[0]->isPublic());//bool(true)
 ```
+④检查方法参数
+在PHP5中声明类方法时可以限制参数中对象类型，因此检查方法的参数变得非常必要。
+
+example:
+```php
+class Person
+{
+    public function __construct(Exception $a)
+    {
+
+    }
+    public function getName()
+    {
+
+    }
+}
+
+$reflector = new ReflectionClass('Person');
+
+$methods = $reflector->getMethod('__construct');
+$params = $methods->getParameters();
+
+foreach ($params as $key => $param) {
+    echo argData($param);//$a must be a Foo object
+}
+
+function argData(ReflectionParameter $arg)
+{
+    $details = "";
+
+    $name = $arg->getName();
+    $class = $arg->getClass();
+    if (!empty($class)) {
+        $className = $class->getName();
+        $details .= "\$$name must be a $className object\n";
+    }
+
+    return $details;
+}
+```
