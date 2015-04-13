@@ -39,7 +39,7 @@
 - [4、对象工具](#object-tool)
 - &nbsp;&nbsp;[4.1、PHP与包](#php-package)
 - &nbsp;&nbsp;[4.2、类函数和对象函数](#class-object-func)
-- &nbsp;&nbsp;[4.3、反射api](#reflect-api)
+- &nbsp;&nbsp;[4.3、反射API](#reflect-api)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -1034,3 +1034,83 @@ var_dump(call_user_func(array(new Xujiajun,'getAge')));//18
 var_dump(call_user_func(array(new Xujiajun,'getAge'),2));//20
 ```
 当然 `call_user_func_array()` 更加好用,使用上相同,参数支持数组传参。
+
+<h5 id="reflect-api">4.3、反射API</h5>
+
+PHP中的反射API就像Java中的java.lang.reflect包一样。它由一系列可以分析属性、方法和类内置类组成。
+
+反射API部分列参考
+
+类       |描述
+---------|---------------------------------
+Relection|为类的摘要信息提供静态函数export()
+RelectionClass|类信息和工具
+RelectionMethod|类方法信息和工具
+RelectionParameter|方法参数信息
+RelectionProperty|类属性信息
+RelectionFunction|函数信息和工具
+RelectionExcetion|错误类
+RelectionExtension|PHP扩展信息
+
+利用这些反射API的类，可以运行访问对象、函数和脚本中的扩展信息。反射API非常强大,我们应该经常使用API而少使用类和对象函数。
+
+example:
+
+```php
+
+class Person
+{
+    public function getName()
+    {
+    }
+}
+
+class Xujiajun extends Person
+{
+
+    public $age = "18";
+
+    public function getAge($arg = 0)
+    {
+        return 18+$arg;
+    }
+}
+
+$reflector = new ReflectionClass('Xujiajun');
+$properties = Reflection::export($reflector);
+var_dump($properties);
+
+//输出类似
+    Class [ <user> class Xujiajun extends Person ] {
+      @@ /private/var/www/demo/foo.php 11-25
+    
+      - Constants [0] {
+      }
+    
+      - Static properties [0] {
+      }
+    
+      - Static methods [0] {
+      }
+    
+      - Properties [1] {
+        Property [ <default> public $age ]
+      }
+    
+      - Methods [2] {
+        Method [ <user> public method getAge ] {
+          @@ /private/var/www/demo/foo.php 16 - 19
+    
+          - Parameters [1] {
+            Parameter #0 [ <optional> $arg = 0 ]
+          }
+        }
+    
+        Method [ <user, inherits Person> public method getName ] {
+          @@ /private/var/www/demo/foo.php 5 - 8
+        }
+      }
+    }
+```
+从例子中可以看出，Relection::export()提供了Xujiajun这个类的几乎所有信息。
+如果我们直接var_dump()一个对象的话，前提要实例化它，而且也不会有细节提供。可见，反射API提供了更高层次的功能。
