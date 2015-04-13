@@ -40,6 +40,10 @@
 - &nbsp;&nbsp;[4.1、PHP与包](#php-package)
 - &nbsp;&nbsp;[4.2、类函数和对象函数](#class-object-func)
 - &nbsp;&nbsp;[4.3、反射API](#reflect-api)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4.3.1、入门](#reflect-intro)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4.3.2、类检测](#reflect-class)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4.3.3、方法检测](#reflect-method)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4.3.4、参数检测](#reflect-parameters)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -1037,6 +1041,7 @@ var_dump(call_user_func(array(new Xujiajun,'getAge'),2));//20
 
 <h5 id="reflect-api">4.3、反射API</h5>
 
+<h5 id="reflect-intro">4.3.1、入门</h5>
 PHP中的反射API就像Java中的java.lang.reflect包一样。它由一系列可以分析属性、方法和类内置类组成。
 
 反射API部分列参考
@@ -1052,7 +1057,7 @@ RelectionFunction|函数信息和工具
 RelectionExcetion|错误类
 RelectionExtension|PHP扩展信息
 
-①利用这些反射API的类，可以运行访问对象、函数和脚本中的扩展信息。反射API非常强大,我们应该经常使用API而少使用类和对象函数。
+利用这些反射API的类，可以运行访问对象、函数和脚本中的扩展信息。反射API非常强大,我们应该经常使用API而少使用类和对象函数。
 
 example:
 
@@ -1115,7 +1120,7 @@ var_dump($properties);
 从例子中可以看出，Relection::export()提供了Xujiajun这个类的几乎所有信息。
 如果我们直接var_dump()一个对象的话，前提要实例化它，而且也不会有细节提供。可见，反射API提供了更高层次的功能。
 
-②类检测
+<h5 id="reflect-class">4.3.2、类检测</h5>
 
 example：
 ```php
@@ -1128,7 +1133,7 @@ $reflector = new ReflectionClass('Person');
 
 var_dump($reflector->isInterface());//bool(true)
 ```
-③检查方法
+<h5 id="reflect-method">4.3.3、检查方法</h5>
 
 ReflectionClass我们用来检查类，那么检查类中的方法可以用`RelectionMethod`
 
@@ -1153,7 +1158,8 @@ $reflector = new ReflectionClass('Xujiajun');
 $methods = $reflector->getMethods();
 var_dump($methods[0]->isPublic());//bool(true)
 ```
-④检查方法参数
+<h5 id="reflect-parameters">4.3.4、检查方法参数</h5>
+
 在PHP5中声明类方法时可以限制参数中对象类型，因此检查方法的参数变得非常必要。
 
 example:
