@@ -960,3 +960,23 @@ if (method_exists($p, "getAge")) {
 ```
 
 注意以上两者区别：如果getAge方法改成private、protected,`is_callable`返回是false，而`method_exists`返回true
+
+了解类属性
+我们既然可以查询类的方法，当然我们也可以查询类的属性。PHP提供了`get_class_vars`函数，参数接收类名。
+
+example:
+
+```php
+
+class Xujiajun
+{
+ public $age = "18";
+}
+var_dump(get_class_vars('Xujiajun'));
+
+//输出结果
+    array(1) {
+      'age' =>
+      string(2) "18"
+    }
+```
