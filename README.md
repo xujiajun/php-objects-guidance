@@ -3,7 +3,7 @@
 本文由 [xujiajun][xujiajun] 整理、编辑并在 [CC BY-SA 3.0][CC] 协议下发布，主要为了给自己和各位朋友作为系统学习PHP与面向对象、设计模式的参考资料。更多请关注 [superu.org][superu]
 [CC]: http://zh.wikipedia.org/wiki/Wikipedia:CC "Wiki: CC"
 [xujiajun]:http://xujiajun.cn
-[sueperu]:http://superu.org
+[superu]:http://superu.org
 - - - 
 前言
 ----
