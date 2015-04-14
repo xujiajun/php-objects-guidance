@@ -48,6 +48,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[4.3.5、使用反射API](#use-reflection-api)
 - [5、对象与设计](#object-design)
 - &nbsp;&nbsp;[5.1、面向对象设计和过程式编程](#diff-object-process)
+- &nbsp;&nbsp;[5.2、定义类](#choose-object)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -1470,3 +1471,6 @@ $test->write();
 $test = ParamHander::getInstance("./xujiajun.text");
 $test->read();
 ```
+<h5 id="choose-object">5.2、定义类</h5>
+
+定义类的界限往往比我们想象更加困难，特别是系统不断发展时,最好的办法是分清职责。但是注意设计原则并不是一成不变的。
