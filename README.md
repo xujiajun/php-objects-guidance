@@ -1434,7 +1434,6 @@ abstract class ParamHandle
 }
 
 //Xml
-
 class XmlParamHander extends ParamHander
 {
     function write()
@@ -1446,6 +1445,7 @@ class XmlParamHander extends ParamHander
     }
 }
 
+//Text
 class TextParamHander extends ParamHander
 {
     function write()
@@ -1457,4 +1457,16 @@ class TextParamHander extends ParamHander
     }
 }
 ```
+这些类简单地提供了write()和read()方法的实现。每个类都根据适当的文件格式进行读写。
 
+```php
+
+//Xml
+$test = ParamHander::getInstance("./xujiajun.xml");
+$test->addParam("key1","val1");
+$test->write();
+
+//Text
+$test = ParamHander::getInstance("./xujiajun.text");
+$test->read();
+```
