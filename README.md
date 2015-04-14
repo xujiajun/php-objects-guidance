@@ -45,6 +45,8 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[4.3.3、方法检测](#reflect-method)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4.3.4、参数检测](#reflect-parameters)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4.3.5、使用反射API](#use-reflection-api)
+- [5、对象与设计](#object-design)
+- &nbsp;&nbsp;[5.1、面向对象设计和过程式编程](#diff-object-process)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -1317,3 +1319,40 @@ $test->init();
 // FtpModule:setHost: superu.org
 // FtpModule:setUser: xujiajun
 ```
+<h2 id="object-design">5、对象与设计</h2>
+
+<h5 id="diff-object-process">5.1、面向对象设计和过程式编程</h5>
+
+Q:面向对象和传统的过程式编程有声明不同呢？很多人认为不同之处是OOP包含对象？
+
+A:事实上这种说法并不准确,在PHP,你经常发现过程式编程也使用对象，也会出现类中包含过程式代码的情况。类的出现并不能说明使用了面向对象设计,面向对象和过程式一个核心区别是如何分配职责。
+
+example:
+
+```php
+//读取key:value
+
+funciton readParams($sourceFile)
+{
+    $params = array();
+    //code...
+    return params;
+}
+
+function writeParams($params,$sourseFile)
+{
+    //写入文本参数到sourseFile
+}
+
+$file = "./xujiajun.txt";
+$array['key1'] = "xujiajun";
+$array['key2'] = "徐佳军";
+
+writeParams($array,$file);
+$output = readParams($file);
+print_r($output);
+
+```
+这段代码较为紧凑且容易维护。
+
+
