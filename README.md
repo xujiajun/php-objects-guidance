@@ -1356,4 +1356,105 @@ print_r($output);
 ```
 这段代码较为紧凑且容易维护。
 
+现在我们被告知这个工具支持如下所有所示的XML格式：
+
+```XML
+<params>
+    <param>
+        <key>my key</key>
+        <key>my val</key>
+    </param>
+</params>
+
+```
+如果参数文件以.xml结尾，就应该以XML模式读取参数文件。这个时候，我们有两个办法：
+①在控制代码中检查文件的扩展名
+②在读写函数中检测
+
+这里我们选择第二种:
+
+```PHP
+
+function readParams($source)
+{
+    $params = array();
+    if(preg_match("/\.xml$/i",$source)){
+        //从source读XML参数
+    } else {
+        //从source读文本参数
+    }
+}
+
+function writeParams($params,$sourse)
+{
+    if(preg_match("/\.xml$/i",$source)){
+        //写入XML参数到$source
+    } else {
+        //写入文本参数到$source
+    }
+}
+```
+
+我们在两个函数中都要检测XML的扩展名,这样的重复性代码会产生问题。如果我们还要支持其他格式的参数，就要始终保持readParams()和WriteParams函数的一致性。
+
+那么，我们用类来解决看看:
+
+```php
+abstract class ParamHandle
+{
+    protected $source;
+    protected $params = array();
+    
+    function __construct($source)
+    {
+        $this->source = $source;
+    }
+    
+    function addParam($key,$val)
+    {
+        $this->params[$key] = $val;
+    }
+    
+    function getAllParams()
+    {
+        return $this->params;
+    }
+    
+    static function getInstance($filename)
+    {
+        if(preg_match("/\.xml$/i",$filename)){
+            return new XmlParamHander($filename);
+        }
+        
+        return new TextParamHander($filename);
+    }
+    
+    abstract function write();
+    abstract function read();
+}
+
+//Xml
+
+class XmlParamHander extends ParamHander
+{
+    function write()
+    {
+    }
+    
+    function read()
+    {
+    }
+}
+
+class TextParamHander extends ParamHander
+{
+    function write()
+    {
+    }
+    
+    function read()
+    {
+    }
+}
+```
 
