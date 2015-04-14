@@ -44,6 +44,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;[4.3.2、类检测](#reflect-class)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4.3.3、方法检测](#reflect-method)
 - &nbsp;&nbsp;&nbsp;&nbsp;[4.3.4、参数检测](#reflect-parameters)
+- &nbsp;&nbsp;&nbsp;&nbsp;[4.3.5、使用反射API](#use-reflection-api)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -1163,6 +1164,7 @@ var_dump($methods[0]->isPublic());//bool(true)
 在PHP5中声明类方法时可以限制参数中对象类型，因此检查方法的参数变得非常必要。
 
 example:
+
 ```php
 class Person
 {
@@ -1198,4 +1200,120 @@ function argData(ReflectionParameter $arg)
 
     return $details;
 }
+```
+
+<h5 id="use-reflection-api">4.3.5、使用反射API</h5>
+
+example：
+
+```php
+
+class Person
+{
+    public $name;
+
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+}
+
+interface Module
+{
+
+}
+
+class FtpModule implements Module
+{
+    function setHost($host)
+    {
+        echo "FtpModule:setHost: $host\n";
+    }
+
+    function setUser($user)
+    {
+        echo "FtpModule:setUser: $user\n";
+    }
+
+    function excute()
+    {
+
+    }
+}
+
+class  PersonModule implements Module
+{
+    function setPerson(Person $person)
+    {
+        echo "PersonModule::setPerson: {$person->name}\n";
+    }
+
+    function excute()
+    {
+
+    }
+}
+
+class ModuleRunner
+{
+
+    private $configData = array(
+        'PersonModule' => array(
+            'person' => 'anon'
+        ),
+        'FtpModule' => array(
+            'host' => 'superu.org',
+            'user' => 'xujiajun'
+        )
+    );
+
+    public function init()
+    {
+        $interface = new ReflectionClass('Module');
+        foreach ($this->configData as $moduleName => $params) {
+
+            $moduleClass = new ReflectionClass($moduleName);
+            if (!$moduleClass->isSubclassOf($interface)) {
+                throw new Exception("unknow module type: $moduleClass");
+            }
+
+            $module = $moduleClass->newInstance();
+            foreach ($moduleClass->getMethods() as $method) {
+                $this->handleMethod($module,$method,$params);
+            }
+        }
+
+    }
+
+    private function handleMethod(Module $module, ReflectionMethod $method, $params)
+    {
+        $name = $method->getName();
+        $args = $method->getParameters();
+
+        if (substr($name, 0,3) != 'set' or count($args) != 1) {
+            return false;
+        }
+
+        $property = strtolower(substr($name,3));
+        if (!isset($params[$property])) {
+            return false;
+        }
+
+        $argClass = $args[0]->getClass();
+        if (empty($argClass)) {
+            $method->invoke($module,$params[$property]);
+        } else {
+            $method->invoke($module,$argClass->newInstance($params[$property]));
+        }
+    }
+
+}
+
+$test = new ModuleRunner();
+$test->init();
+
+//输出:
+// PersonModule::setPerson: anon
+// FtpModule:setHost: superu.org
+// FtpModule:setUser: xujiajun
 ```
