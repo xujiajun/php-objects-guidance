@@ -49,6 +49,7 @@
 - [5、对象与设计](#object-design)
 - &nbsp;&nbsp;[5.1、面向对象设计和过程式编程](#diff-object-process)
 - &nbsp;&nbsp;[5.2、定义类](#choose-object)
+- &nbsp;&nbsp;[5.3、多态](#polymorphism)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -1474,3 +1475,24 @@ $test->read();
 <h5 id="choose-object">5.2、定义类</h5>
 
 定义类的界限往往比我们想象更加困难，特别是系统不断发展时,最好的办法是分清职责。但是注意设计原则并不是一成不变的。
+
+<h5 id="polymorphism">5.3、多态</h5>
+
+多态或称“类切面”是面向对象系统的基本特征之一。
+
+example:
+
+```php
+//获取摘要
+function getSummary()
+{
+    $base = "$this->title: $this->name";
+    if ($this->type == 'book'){
+        $base .= 'pageCount: $this->pageNum';
+    } else if ($this->type = 'cd'){
+        $base .= 'Playing Time: $this->playLength';
+    }
+}
+
+//写到这里，看出什么来了吗？暗示我们有两个子类原型`CdProduct`和`BookProduct`
+```
