@@ -51,6 +51,7 @@
 - &nbsp;&nbsp;[5.2、定义类](#choose-object)
 - &nbsp;&nbsp;[5.3、多态](#polymorphism)
 - &nbsp;&nbsp;[5.4、封装](#encapsulation)
+- &nbsp;&nbsp;[5.5、忘记细节](#program-interface)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -1505,3 +1506,9 @@ function getSummary()
 要实现封装，最简单的办法是将属性定义为private或者protected。通过对客户端代码隐藏属性，我们创建了一个接口并防止在偶然情况下污染对象中的数据。
 
 多态是另外一种封装。
+
+<h5 id="program-interface">5.5、忘记细节</h5>
+
+Gang of Four 在《设计模式》总结了这个规则:
+
+`为接口而不是实现而编程(Program to interface,not an implementation)`
