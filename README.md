@@ -50,6 +50,7 @@
 - &nbsp;&nbsp;[5.1、面向对象设计和过程式编程](#diff-object-process)
 - &nbsp;&nbsp;[5.2、定义类](#choose-object)
 - &nbsp;&nbsp;[5.3、多态](#polymorphism)
+- &nbsp;&nbsp;[5.4、封装](#encapsulation)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -1496,3 +1497,11 @@ function getSummary()
 
 //写到这里，看出什么来了吗？暗示我们有两个子类原型`CdProduct`和`BookProduct`
 ```
+
+<h5 id="encapsulation">5.4、封装</h5>
+
+简单来说，封装就是对客户端代码隐藏数据和功能。封装也是面向对象的重要概念之一。
+
+要实现封装，最简单的办法是将属性定义为private或者protected。通过对客户端代码隐藏属性，我们创建了一个接口并防止在偶然情况下污染对象中的数据。
+
+多态是另外一种封装。
