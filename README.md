@@ -52,6 +52,8 @@
 - &nbsp;&nbsp;[5.3、多态](#polymorphism)
 - &nbsp;&nbsp;[5.4、封装](#encapsulation)
 - &nbsp;&nbsp;[5.5、忘记细节](#program-interface)
+- [6、模式](#pattern)
+- &nbsp;&nbsp;[6.1、什么是模式](#what-is-pattern)
 
 <h2 id="php-intro">1、PHP简介</h2>
 
@@ -1512,3 +1514,15 @@ function getSummary()
 Gang of Four 在《设计模式》总结了这个规则:
 
 `为接口而不是实现而编程(Program to interface,not an implementation)`
+
+<h2 id="pattern">6、模式</h2>
+
+<h5 id="what-is-pattern">6.1、什么是模式</h5>
+
+看看前辈们如何总结的:
+
+`在软件世界中，每个开发机构就像一个部落，而模式就是对部落的某种共同记忆的一种表现。---Grady Booch,《J2EE核心模式》`
+
+`模式便是特定环境下同类问题的一种解决方法  ---Gand of Four，《设计模式：可复用面向对象软件基础》`
+
+正如上面所暗示的，设计模式便是分析过的问题和问题解决方案所阐述的优秀实践。注意模式本质是自下而上的。它们来源于实践非空洞的理论。
