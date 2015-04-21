@@ -1,3 +1,12 @@
+##目录
+
+- [5、对象与设计](#object-design)
+- &nbsp;&nbsp;[5.1、面向对象设计和过程式编程](#diff-object-process)
+- &nbsp;&nbsp;[5.2、定义类](#choose-object)
+- &nbsp;&nbsp;[5.3、多态](#polymorphism)
+- &nbsp;&nbsp;[5.4、封装](#encapsulation)
+- &nbsp;&nbsp;[5.5、忘记细节](#program-interface)
+
 <h2 id="object-design">5、对象与设计</h2>
 
 <h5 id="diff-object-process">5.1、面向对象设计和过程式编程</h5>
