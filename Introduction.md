@@ -1,3 +1,9 @@
+##导航
+
+- [1、PHP简介](#php-intro)
+- &nbsp;&nbsp;[1.1、什么是PHP?](#what-is-PHP)
+- &nbsp;&nbsp;[1.1、PHP基本语法](#PHP-syntax)
+
 <h2 id="php-intro">1、PHP简介</h2>
 
 <h5 id="what-is-PHP">1.1、什么是PHP?</h5>
