@@ -139,7 +139,7 @@ class ShopProduct
   
   public function getFullName()
   {
-     return  $product1->firstName." ".$product1->secondName(); 
+     return  $product1->firstName." ".$product1->secondName; 
   }
 }
 ```
