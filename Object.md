@@ -37,7 +37,7 @@ class ShopProduct
 {
   public $title = "default";
   public $price = 10;
-  public $fristName = "Super";
+  public $firstName = "Super";
   public $secondName = "U";
 }
 ```
@@ -59,7 +59,7 @@ echo $product1->price;//这边输出 20
 当我们要获取名字(full name)：我们可以这样做：
 
 ```php
-echo $product1->firstName." ".$product1->secondName(); //super U
+echo $product1->firstName." ".$product1->secondName; //super U
 ```
 
 太麻烦了实在。如果能让对象代替我们处理这件苦差事就好了。请看下面的使用方法。
@@ -82,13 +82,13 @@ class ShopProduct
 {
   public $title = "default";
   public $price = 10;
-  public $fristName = "Super";
+  public $firstName = "Super";
   public $secondName = "U";
   
   //注意类方法也可以声明成public\protected\private
   public function getFullName()
   {
-     return  $product1->firstName." ".$product1->secondName(); 
+     return  $product1->firstName." ".$product1->secondName; 
   }
 }
 ```
@@ -107,12 +107,12 @@ echo $product1->getFullName();  //输出super U，刚才的问题得到了解决
 
 ```php
 $product2 = new ShopProduct();
-$product2->fristName = "Super2"
+$product2->firstName = "Super2"
 $product2->secondName = "U2";
 echo $product2->getFullName();
 
 $product3 = new ShopProduct();
-$product3->fristName = "Super3"
+$product3->firstName = "Super3"
 $product3->secondName = "U3";
 echo $product3->getFullName();
 ```
@@ -126,7 +126,7 @@ class ShopProduct
 {
   public $title = "default";
   public $price = 10;
-  public $fristName = "Super";
+  public $firstName = "Super";
   public $secondName = "U";
   
   function __construct($title, $price, $firstName, $secondName)
@@ -217,7 +217,7 @@ class ShopProduct
 {
   public $title = "default";
   public $price = 10;
-  public $fristName = "Super";
+  public $firstName = "Super";
   public $secondName = "U";
   public $playLength;
   
